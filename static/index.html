@@ -3,13 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meu Jogo</title>
+  <title>Pong Recicla — Química</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Meu Jogo</h1>
-  <canvas id="game" width="800" height="450"></canvas>
-  <p>Setas/WASD para mover. Espaço para ação.</p>
+  <header class="top">
+    <div class="title">
+      <h1>Pong Recicla</h1>
+      <p>Química + Reciclagem: rebata o resíduo e aprenda!</p>
+    </div>
+
+    <div class="controls">
+      <div class="row">
+        <button id="btnMode1" class="primary">1 jogador (vs IA)</button>
+        <button id="btnMode2">2 jogadores</button>
+
+        <span class="divider"></span>
+
+        <label for="difficulty">Dificuldade:</label>
+        <select id="difficulty">
+          <option value="easy">Fácil</option>
+          <option value="normal" selected>Normal</option>
+          <option value="hard">Difícil</option>
+        </select>
+
+        <span class="divider"></span>
+
+        <button id="btnStart">Iniciar (Enter)</button>
+        <button id="btnPause">Pausar (P)</button>
+        <button id="btnReset">Reiniciar (R)</button>
+      </div>
+
+      <div class="row small">
+        <span><b>P1</b>: W/S</span>
+        <span><b>P2</b>: ↑/↓ (no modo 2P)</span>
+        <span>Enter: start • P: pause • R: reset</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="left">
+      <canvas id="game" width="900" height="520"></canvas>
+
+      <div class="panel">
+        <div class="hint">
+          <div class="badge" id="wasteBadge">RESÍDUO</div>
+          <div id="hintText">Escolha o modo acima e aperte Enter para começar.</div>
+        </div>
+
+        <div class="saveScore">
+          <input id="playerName" maxlength="24" placeholder="Seu nome (ranking)" />
+          <button id="btnSave">Salvar pontuação (P1)</button>
+          <span id="saveMsg" class="small"></span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <h2>Leaderboard</h2>
+      <div class="small muted">Top 10 (score mais alto)</div>
+      <ol id="board"></ol>
+
+      <h2>Como funciona</h2>
+      <ul class="small">
+        <li>A bola é um <b>resíduo</b> (plástico, vidro, metal, papel, orgânico).</li>
+        <li>Quando alguém marca ponto, aparece uma <b>dica de química</b> ligada ao resíduo.</li>
+        <li>Objetivo: chegar a <b>7 pontos</b> primeiro.</li>
+      </ul>
+    </aside>
+  </main>
+
   <script src="game.js"></script>
 </body>
 </html>
